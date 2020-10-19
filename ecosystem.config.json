@@ -1,0 +1,14 @@
+{ apps:
+      [{
+        name: "car",
+        script: "manage.py",
+	 
+        args: ["runserver", "127.0.0.1:88"],
+        exec_mode: "fork",
+        instances: "1",
+        wait_ready: true,
+        autorestart: true,
+        max_restarts: 5,
+        interpreter : "python"
+      }]
+}

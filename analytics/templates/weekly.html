@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block form %}
+
+
+<form class="form-inline" action="{% url 'search' 'weekly' %}" method="POST">
+ {% csrf_token %}
+ <input id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Container">
+ <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="make_search">Search</button>
+</form>
+{% endblock %}
+ {% block views %}
+{% include "table_views_weekly.html" %}
+{% endblock %}
+
+{% block days %}
+{% include "table_days_weekly.html" %}
+{% endblock %}

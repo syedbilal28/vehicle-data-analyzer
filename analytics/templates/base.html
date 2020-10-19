@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Dashboard</title>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        table{
+
+            margin-left:8rem;
+        }
+        h3{
+            text-align: center;
+            padding:10px;
+        }
+        table ,tr td{
+            border:1px solid #bfbfbf;
+        }
+        tbody {
+            display:block;
+            height:15rem;
+            overflow:auto;
+        }
+
+        thead, tbody tr {
+            display:table;
+            width:100%;
+
+            table-layout:fixed;/* even columns width , fix width of table too*/
+        }
+        thead {
+            width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+        }
+        table {
+            width:28rem;
+            margin-left:5rem;
+        }
+        .row{
+            padding-top:2.5rem;
+            padding-bottom:1rem;
+            margin:0px;
+        }
+        img{
+            height:30rem;
+            width:42rem;
+
+        }
+        .imgholder{
+            text-align:center;
+        }
+
+    </style>
+   <script>
+        document.addEventListener('DOMContentLoaded',() =>{
+             document.querySelector("#image1").src="{{Views_Image}}";
+             document.querySelector("#image2").src="{{Days_Image}}";
+             document.querySelector("#dropdownMenuButton").innerText=window.location.pathname.replace(/\//g,"")
+        });
+    </script>
+
+</head>
+<body>
+
+    <div id = "container">
+        <nav class="navbar navbar-dark bg-dark">
+            <!-- Navbar content -->
+            <h3 style="color:white;">DashBoard</h3>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href={% url 'latest' %} >Daily</a>
+                <a class="dropdown-item" href={% url 'weekly' %}>Weekly</a>
+                <a class="dropdown-item" href={% url 'monthly' %}>Monthly</a>
+              </div>
+            </div>
+            {% block form %}
+
+            {% endblock %}
+        </nav>
+        <div class="row">
+            <div id ="top-left" class="col-md-6">
+                <h3>Views</h3>
+                {% block views %}
+
+                {% endblock %}
+            </div>
+            <div id="top-right" class="col-md-6">
+                <h3>Days Online</h3>
+                {% block days %}
+
+                {% endblock %}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+
+            <div id="bottom-left" class="imgholder">
+                <h3>Views Per Day</h3>
+                <img id="image1">
+            </div>
+            <div id ="bottom-right" class="imgholder">
+                <h3>Days Online</h3>
+                <img id ="image2">
+            </div>
+        </div>
+
+
+
+</body>
+</html>
